@@ -61,7 +61,7 @@ basic:
     description: "Submit a form that requires a registered/logged-in user"
 
   logout:                    # 2 pts | once
-    done: false
+    done: true
     description: "Log out from the application and verify it"
 
   fill_input:                # 1 pt each | repeatable | max 10
@@ -81,7 +81,7 @@ basic:
     description: "Define an array of URLs or page data, iterate over them and verify something on each page (e.g. check title or a specific element on 5 different pages using a loop)"
 
   complex_xpath:             # 1 pt each | repeatable | max 10
-    count: 1
+    count: 2
     description: "Use a complex XPath expression (e.g. //div[@class='content']//a[contains(@href,'profile')])"
 
   textarea:                  # 1 pt | once
@@ -119,7 +119,7 @@ basic:
     description: "Read and verify the page title using getTitle()"
 
   page_object_pattern:       # 3 pts | once
-    done: false
+    done: true
     description: "Use Page Object pattern with at least 2 page classes"
     link: "https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/"
 
