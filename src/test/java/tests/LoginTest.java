@@ -23,22 +23,14 @@ public class LoginTest extends BaseTest {
     @Test
     public void userCanLoginWithValidCredentials() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.navigateTo();
-        loginPage.openLoginModal();
-        loginPage.enterEmail(Config.EMAIL);
-        loginPage.enterPassword(Config.PASSWORD);
-        loginPage.clickSubmit();
+        loginPage.login(Config.EMAIL,Config.PASSWORD);
         assertTrue(loginPage.isLoggedIn());
     }
 
     @Test
     public void userCanLogOut() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.navigateTo();
-        loginPage.openLoginModal();
-        loginPage.enterEmail(Config.EMAIL);
-        loginPage.enterPassword(Config.PASSWORD);
-        loginPage.clickSubmit();
+        loginPage.login(Config.EMAIL,Config.PASSWORD);
 
         DashboardPage dashboard = new DashboardPage(driver);
         dashboard.logout();

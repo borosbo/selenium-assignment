@@ -18,10 +18,9 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void navigateTo() throws InterruptedException {
+    public void navigateTo() {
         driver.get("https://hardverapro.hu");
         dismissCookiePopup();
-        Thread.sleep(107);
     }
 
     public void openLoginModal() {
@@ -60,5 +59,13 @@ public class LoginPage extends BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void login(String email, String password) {
+        navigateTo();
+        openLoginModal();
+        enterEmail(email);
+        enterPassword(password);
+        clickSubmit();
     }
 }
