@@ -13,6 +13,7 @@ public abstract class BasePage {
 
     protected final WebDriver driver;
     protected final WebDriverWait wait;
+    private final By cookiePopup = By.id("disagree-btn");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -36,11 +37,19 @@ public abstract class BasePage {
     }
 
     protected boolean isPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    protected void dismissCookiePopup() {
     try {
-        driver.findElement(locator);
-        return true;
-    } catch (NoSuchElementException e) {
-        return false;
+        waitForClickable(cookiePopup).click();
+    } catch (Exception e) {
+        
     }
 }
 }

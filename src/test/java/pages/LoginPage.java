@@ -10,14 +10,18 @@ public class LoginPage extends BasePage {
     private final By loginIcon     = By.cssSelector("a[data-modal-open*='belepes']");
     private final By emailField    = By.name("email");
     private final By passwordField = By.name("pass");
-    private final By submitButton  = By.cssSelector("button[type='submit']");
+    private final By submitButton = By.xpath("//button[contains(text(),'Belépés')]");
+    private final By loggedInIndicator = By.cssSelector("a[href='/privatok/listaz.php']");
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public void navigateTo() {
+    public void navigateTo() throws InterruptedException {
         driver.get("https://hardverapro.hu");
+        dismissCookiePopup();
+        Thread.sleep(107);
     }
 
     public void openLoginModal() {
@@ -41,6 +45,20 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginModalOpen() {
-        return isPresent(emailField);
+        try {
+            waitForVisible(emailField);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isLoggedIn() {
+    try {
+            waitForVisible(loggedInIndicator);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
