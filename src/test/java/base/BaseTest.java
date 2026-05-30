@@ -15,7 +15,11 @@ public class BaseTest {
 
     @BeforeEach
     public void setUp() throws MalformedURLException {
-        ChromeOptions options = new ChromeOptions();
+         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        options.setExperimentalOption("useAutomationExtension", false);
         driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
         driver.manage().window().maximize();
     }
