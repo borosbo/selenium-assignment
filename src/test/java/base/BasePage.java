@@ -59,6 +59,13 @@ public abstract class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
     }
 
+    protected void jsClickHidden(By locator) {
+    WebElement el = wait.until(
+        ExpectedConditions.presenceOfElementLocated(locator)
+    );
+    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+}
+
     protected void scrollToBottom() {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }

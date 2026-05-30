@@ -67,5 +67,6 @@ public class LoginPage extends BasePage {
         enterEmail(email);
         enterPassword(password);
         clickSubmit();
+        waitForVisible(loggedInIndicator);
     }
 }
