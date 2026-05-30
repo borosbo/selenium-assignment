@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 
 public class AdPostingPage extends BasePage {
 
-    private final By titleField       = By.name("title");
+    private final By titleField       = By.xpath("//input[@name='title' and @type='text']");
     private final By descriptionEditor = By.xpath("//div[@data-rtml-editor and @contenteditable='true']");
-    private final By priceField       = By.name("price");
-    private final By shippingCheckbox = By.name("shipping");
+    private final By priceField       = By.xpath("//input[@name='price' and @type='number']");
+    private final By shippingCheckbox = By.xpath("//input[@name='shipping' and @type='checkbox']");
     private final By conditionNewLabel = By.xpath("//label[contains(.,'Új')]");
     private final By conditionNew      = By.xpath("//input[@name='brandnew' and @value='1']");
     private final By submitButton     = By.id("uad-create-and-pay-later");

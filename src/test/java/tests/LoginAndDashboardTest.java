@@ -9,10 +9,10 @@ import util.Config;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginTest extends BaseTest {
+public class LoginAndDashboardTest extends BaseTest {
 
     @Test
-    public void userCanOpenLoginModal() throws InterruptedException {
+    public void userCanOpenLoginModal() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
         loginPage.openLoginModal();
@@ -21,14 +21,14 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void userCanLoginWithValidCredentials() throws InterruptedException {
+    public void userCanLoginWithValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(Config.EMAIL,Config.PASSWORD);
         assertTrue(loginPage.isLoggedIn());
     }
 
     @Test
-    public void userCanLogOut() throws InterruptedException {
+    public void userCanLogOut() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(Config.EMAIL,Config.PASSWORD);
 
@@ -36,5 +36,16 @@ public class LoginTest extends BaseTest {
         dashboard.logout();
 
         assertTrue(dashboard.isLoggedOut());
+    }
+
+    @Test
+    public void userCanSearchForListings() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(Config.EMAIL, Config.PASSWORD);
+
+        DashboardPage dashboard = new DashboardPage(driver);
+        dashboard.searchFor("cpu");
+
+        assertTrue(dashboard.searchResultInputHasTerm("cpu"));
     }
 }
