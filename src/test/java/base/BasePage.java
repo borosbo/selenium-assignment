@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,10 +47,20 @@ public abstract class BasePage {
     }
 
     protected void dismissCookiePopup() {
-    try {
-        waitForClickable(cookiePopup).click();
-    } catch (Exception e) {
-        
+        try {
+            waitForClickable(cookiePopup).click();
+        } catch (Exception e) {
+            
+        }
     }
-}
+
+    protected void jsClick(By locator) {
+        WebElement el = waitForVisible(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+    }
+
+    protected void scrollToBottom() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+
 }
