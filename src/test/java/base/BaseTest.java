@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import util.Config;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -20,8 +22,12 @@ public class BaseTest {
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         options.setExperimentalOption("useAutomationExtension", false);
+        if (Config.HEADLESS) {
+        options.addArguments("--headless=new");
+        }
         driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
         driver.manage().window().maximize();
+
     }
 
     @AfterEach

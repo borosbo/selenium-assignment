@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import pages.AdPostingPage;
 import pages.LoginPage;
 import util.Config;
+import util.RandomDataGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -72,18 +73,22 @@ public class AdPostingTest extends BaseTest {
 
     @Test
     public void userCanFillCompleteAdForm() {
-        adPage.fillTitle("Teszt Videókártya RTX 3080");
-        adPage.fillDescription("Kiváló állapotú videókártya, csak teszteléshez használt.");
-        adPage.fillPrice("150000");
+        String title = RandomDataGenerator.randomAdTitle();
+        String price = RandomDataGenerator.randomPrice();
+        String desc = RandomDataGenerator.randomDescription();
+        String category = RandomDataGenerator.randomCategory();
+
+        adPage.fillTitle(title);
+        adPage.fillDescription(desc);
+        adPage.fillPrice(price);
         adPage.selectConditionNew();
         adPage.checkShipping();
-        adPage.selectCategory("Hardver");
+        adPage.selectCategory(category);
 
         assertTrue(adPage.isFieldFilled("title"));
         assertTrue(adPage.isFieldFilled("price"));
         assertTrue(adPage.isConditionNewSelected());
         assertTrue(adPage.isShippingChecked());
-        assertTrue(adPage.isCategorySelected("Hardver"));
-
+        assertTrue(adPage.isCategorySelected(category));
     }
 }

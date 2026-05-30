@@ -8,6 +8,8 @@ public class Config_example {
     public static final String EMAIL       = "email@gmail.com";
     public static final String PASSWORD    = "password";
 
+    public static final boolean HEADLESS = false;
+
     public static final String[] CATEGORY_URLS = {
         "https://hardverapro.hu/aprok/hardver/index.html",
         "https://hardverapro.hu/aprok/notebook/index.html",
