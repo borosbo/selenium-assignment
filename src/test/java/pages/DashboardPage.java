@@ -1,6 +1,8 @@
 package pages;
 
 import base.BasePage;
+import util.Config;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,6 +13,14 @@ public class DashboardPage extends BasePage {
     private final By loginIcon        = By.cssSelector("a[data-modal-open*='belepes']");
     private final By searchInput  = By.xpath("//input[@name='stext' and @type='text']");
     private final By searchButton = By.xpath("//button[@type='submit' and contains(.,'Keresés')]");
+    private final By hardverLink = By.xpath("//a[@href='/aprok/hardver/index.html' and @data-toggle='tooltip']");
+    private final By tooltip     = By.xpath("//div[contains(@class,'tooltip') and contains(.,'PC alkatrészek')]");
+
+
+    public void navigateTo() {
+        driver.get(Config.BASE_URL);
+        dismissCookiePopup();
+    }
 
     public void searchFor(String text) {
         waitForVisible(searchInput).click();
@@ -41,5 +51,13 @@ public class DashboardPage extends BasePage {
 
     public boolean isLoggedOut() {
         return isPresent(loginIcon);
+    }
+
+    public void hoverOverHardverCategory() {
+        hoverOver(hardverLink);
+    }
+
+    public boolean isTooltipVisible() {
+        return isPresent(tooltip);
     }
 }

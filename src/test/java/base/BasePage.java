@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
@@ -15,6 +16,12 @@ public abstract class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait wait;
     private final By cookiePopup = By.id("disagree-btn");
+
+
+    protected void hoverOver(By locator) {
+        WebElement el = waitForVisible(locator);
+        new Actions(driver).moveToElement(el).perform();
+    }
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

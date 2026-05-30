@@ -48,4 +48,17 @@ public class LoginAndDashboardTest extends BaseTest {
 
         assertTrue(dashboard.searchResultInputHasTerm("cpu"));
     }
+
+    @Test
+    public void hoveringOverCategoryRevealsCategoryDescription() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(Config.EMAIL, Config.PASSWORD);
+
+        DashboardPage dashboard = new DashboardPage(driver);
+        dashboard.navigateTo();
+        dashboard.hoverOverHardverCategory();
+
+        assertTrue(dashboard.isTooltipVisible(),
+            "Hovering over category should show tooltip description");
+    }
 }
