@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,4 +34,13 @@ public abstract class BasePage {
     public String getUrl() {
         return driver.getCurrentUrl();
     }
+
+    protected boolean isPresent(By locator) {
+    try {
+        driver.findElement(locator);
+        return true;
+    } catch (NoSuchElementException e) {
+        return false;
+    }
+}
 }
